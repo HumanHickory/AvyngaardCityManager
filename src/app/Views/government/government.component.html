@@ -1,0 +1,45 @@
+<form [formGroup]="governmentForm" class="container-fluid my-3" id="government">
+
+    <div>
+        <div class="mb-3">
+            <h2>Government</h2>
+        </div>
+
+        <div class="my-3" *ngFor="let government of Governments; let i = index">
+            <div *ngIf="government.campaignId != null"><b>Campaign Id: </b>{{government.campaignId}}</div>
+            <h5>{{government.title}}</h5>
+
+            <div [innerHtml]="government.descriptionHtml"></div>
+
+            <button type="button" (click)="remove(i)" class="btn btn-danger mt-3 me-1">Remove</button>
+            <button type="button" (click)="edit(i)" class="btn btn-primary mt-3">Edit</button>
+        </div>
+    </div>
+
+    <div class="form-group my-2">
+        <label for="campaignId">Campaign (optional - will only show for selected campaign)</label>
+        <select id="campaignId" formControlName="campaignId" class="form-control">
+            <option *ngFor="let campaign of Campaigns" value="{{campaign.id}}">{{campaign.name}}</option>
+        </select>
+    </div>
+
+    <div class="form-group my-1">
+        <label for="title">Government or Ruler Name</label>
+        <input type="text" id="title" formControlName="title" class="form-control">
+        <div *ngIf="governmentForm.get('title')?.hasError('required') && Validate" class="text-danger">
+            Title is required.
+        </div>
+    </div>
+
+    <div class="form-group my-1">
+        <label for="descriptionHtml">Description</label>
+        <p-editor formControlName="descriptionHtml" [style]="{ height: '100px' }"></p-editor>
+        <div *ngIf="governmentForm.get('descriptionHtml')?.hasError('required') && Validate" class="text-danger">
+            Story is required.
+        </div>
+    </div>
+
+    <button type="button" (click)="save()" class="btn btn-success mt-3">Save Government</button>
+
+    <app-page-break></app-page-break>
+</form>

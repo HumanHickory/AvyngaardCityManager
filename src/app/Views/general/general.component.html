@@ -1,0 +1,65 @@
+<form [formGroup]="generalForm" class="container-fluid my-3" id="general">
+    <div class="row">
+        <h2>General</h2>
+
+        <div class="form-group col-3 my-3">
+            <label for="name">Name</label>
+            <input type="text" id="name" formControlName="name" class="form-control" placeholder="City Name" (input)="onNameChange()">
+            
+            <div *ngIf="generalForm.get('name')?.hasError('required') && Validate" class="text-danger">
+                Name is required.
+              </div>
+        </div>
+    
+        <div class="form-group col-3 my-3">
+            <label for="area">Area</label>
+            <input type="text" id="area" formControlName="area" class="form-control" placeholder="Region Name (i.e. Abydanisian Desert)">
+            <div *ngIf="generalForm.get('area')?.hasError('required') && Validate" class="text-danger">
+                Area is required.
+              </div>
+        </div>
+    
+        <div class="form-group col-3 my-3">
+            <label for="pathName">Path Name</label>
+            <input type="text" id="pathName" formControlName="pathName" class="form-control" placeholder="Enter URL Path Name">
+            <div *ngIf="generalForm.get('pathName')?.hasError('required') && Validate" class="text-danger">
+                Path Name is required.
+              </div>
+        </div>
+    
+        <div class="form-group col-3 my-3">
+            <label for="sizeId">Location Size</label>
+            <select id="sizeId" formControlName="sizeId" class="form-control">
+                <option *ngFor="let size of CitySizes" value="{{size.id}}">{{size.description}}</option>
+            </select>
+            <div *ngIf="generalForm.get('sizeId')?.hasError('required') && Validate" class="text-danger">
+                Location Size is required.
+              </div>
+        </div> 
+
+        <div class="form-group col-6 my-3">
+            <label for="motto">Motto</label>
+            <input type="text" id="motto" formControlName="motto" class="form-control" placeholder="City Motto">
+            <div *ngIf="generalForm.get('motto')?.hasError('required') && Validate" class="text-danger">
+                Motto is required for Villages and Towns.
+              </div>
+        </div>
+       
+        <div class="form-group col-6 my-3">
+            <label for="magicIdeology">Magic Ideology</label>
+            <input type="text" id="magicIdeology" formControlName="magicIdeology" class="form-control" placeholder="Magic Ideology">
+        </div>        
+        
+        <div class="form-group col-12 my-3">
+            <label for="history">History</label>
+            <p-editor formControlName="history" [style]="{ height: '100px' }"></p-editor>
+
+            <div *ngIf="generalForm.get('history')?.hasError('required') && Validate" class="text-danger">
+                History is required.
+              </div>
+        </div>
+
+    </div>
+    <app-page-break></app-page-break>
+
+</form>

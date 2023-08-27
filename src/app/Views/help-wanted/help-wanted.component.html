@@ -1,0 +1,47 @@
+<form [formGroup]="helpWantedFormGroup" class="container-fluid my-3" id="helpWanted">
+
+    <div>
+        <div class="mb-3">
+            <h2>Help Wanted</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 my-1" *ngFor="let help of Help; let i = index">
+                <div class="wrapper">
+                    <h5> {{help.title}} </h5>
+                    <hr>
+                    <p [innerHtml]="help.detailsHtml"></p>
+                    <button type="button" (click)="remove(i)" class="btn btn-danger mt-3 me-1">Remove</button>
+                    <button type="button" (click)="edit(i)" class="btn btn-primary mt-3">Edit</button>               
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group my-2">
+        <label for="campaignId">Campaign (optional - will only show for selected campaign)</label>
+        <select id="campaignId" formControlName="campaignId" class="form-control">
+            <option *ngFor="let campaign of Campaigns" value="{{campaign.id}}">{{campaign.name}}</option>
+        </select>
+    </div>   
+
+    <div class="form-group my-1">
+        <label for="title">Title</label>
+        <input type="text" id="title" formControlName="title" class="form-control">
+        <div *ngIf="helpWantedFormGroup.get('title')?.hasError('required') && Validate" class="text-danger">
+            Title is required.
+        </div>
+    </div>
+
+    <div class="form-group my-1">
+        <label for="detailsHtml">Details HTML</label>
+        <p-editor formControlName="detailsHtml" [style]="{ height: '100px' }"></p-editor>
+        <div *ngIf="helpWantedFormGroup.get('detailsHtml')?.hasError('required') && Validate" class="text-danger">
+            Details are required.
+        </div>
+    </div>
+
+    <button type="button" (click)="save()" class="btn btn-success mt-3">Save</button>
+
+    <app-page-break></app-page-break>
+</form>

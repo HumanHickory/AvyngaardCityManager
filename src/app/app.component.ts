@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'AvyngaardCityManager';
+  title = 'City Manager';
+  validate = false;
+  CityName = '';
+
+  handleNameUpdated(updatedName: string) {
+    this.CityName = updatedName;
+  }  
+  
 }

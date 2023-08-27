@@ -1,0 +1,29 @@
+.side-nav {
+    position: sticky;
+    top: 0;
+    height: 98vh;
+    background-color: #333; /* Customize background color */
+    padding-left: 20px;
+    padding-top: 20px;
+    color: white; /* Customize text color */
+  }
+  
+  .side-nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .side-nav li {
+    margin-bottom: 10px;
+  }
+  
+  .side-nav a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 18px;
+  }
+  
+  /* Highlight the active link */
+  .side-nav a.router-link-active {
+    font-weight: bold;
+  }
